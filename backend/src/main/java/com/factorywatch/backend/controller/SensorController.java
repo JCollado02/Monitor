@@ -1,21 +1,27 @@
 package com.factorywatch.backend.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.factorywatch.backend.model.SensorData;
 import com.factorywatch.backend.model.SensorReading;
 import com.factorywatch.backend.repository.SensorReadingRepository;
+
+import jakarta.validation.Valid;
 
 @RestController // tells us this class handles web requests
 @RequestMapping("/api") // everyhthing here comes after /api
@@ -34,7 +40,7 @@ public class SensorController {
     // POST requests
     // POST new sensor data
     @PostMapping("/sensor-data") // when we get a POST request at this url, do the following:
-    public ResponseEntity<String> recieveSensorData(@RequestBody SensorData data) {
+    public ResponseEntity<String> recieveSensorData(@Valid @RequestBody SensorData data) {
 
         SensorReading reading = new SensorReading(data.getTemperature(), data.getHumidity(), data.getDeviceId());
         repository.save(reading);
@@ -71,6 +77,18 @@ public class SensorController {
         return repository.findByDeviceId(deviceId);
     }
 
+    // GET by date range
+    @GetMapping("/sensor-data/range")
+    public List<SensorReading> getReadingsByDateRange(
+            @RequestParam String startDate,
+            @RequestParam String endDate) {
+        // string to localDateTime
+        LocalDateTime start = LocalDateTime.parse(startDate);
+        LocalDateTime end = LocalDateTime.parse(endDate);
+
+        return repository.findByDateRange(start, end);
+    }
+
     // ------------------------------------------------------------------------------------------------------------//
 
     // DELETE requests
@@ -85,5 +103,12 @@ public class SensorController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    // exception handler for invalid date/time
+    @ExceptionHandler(DateTimeParseException.class)
+    public ResponseEntity<String> handleDateParseException(DateTimeParseException ex) {
+        return ResponseEntity.badRequest()
+                .body("Invalid date format. Use ISO format: 2025-11-13T17:00:00");
     }
 }

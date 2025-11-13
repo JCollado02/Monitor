@@ -1,8 +1,14 @@
 package com.factorywatch.backend.model;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
+
 public class SensorData {
+    @NotNull
     private Double temperature;
+    @NotNull
     private Double humidity;
+    @NotBlank
     private String deviceId;
 
     public SensorData() {
