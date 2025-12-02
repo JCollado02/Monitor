@@ -12,8 +12,7 @@
 }
 
 .app-wrapper {
-  max-width: 1600px;
-  margin: 0 auto;
+  margin: 0;
   display: flex;
 }
 
@@ -1143,5 +1142,39 @@
 @media (min-width: 1280px) {
   .devices-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ==================== Mobile View Fixes ==================== */
+@media (max-width: 768px) {
+  .view-header {
+    align-items: flex-start;
+  }
+  
+  .view-title-main,
+  .view-title-section {
+    font-size: 1.5rem; /* Smaller on mobile */
+  }
+  
+  .view-subtitle {
+    font-size: 0.875rem;
+  }
+  
+  .analytics-controls {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .filter-buttons,
+  .export-button {
+    width: 100%;
+  }
+  
+  .stats-grid--four {
+    grid-template-columns: 1fr; /* Stack on mobile */
+  }
+  
+  .charts-grid {
+    gap: 1rem;
   }
 }
