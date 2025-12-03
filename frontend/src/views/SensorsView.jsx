@@ -1,5 +1,6 @@
 import { Search, Cpu, Battery, Wifi, RefreshCw, Settings, Thermometer, Droplets } from 'lucide-react';
 import { Card, StatusBadge } from '../components/Shared';
+import { formatTimestamp } from '../utils/formatTime';
 
 export default function SensorsView({ readings = [], getStatus, isDeviceOnline }) {
     const devices = readings.map(reading => {
@@ -12,7 +13,7 @@ export default function SensorsView({ readings = [], getStatus, isDeviceOnline }
             status: isOnline ? getStatus(reading.temperature) : 'offline',
             temperature: reading.temperature,
             humidity: reading.humidity,
-            lastSeen: new Date(reading.timestamp).toLocaleString(),
+            lastSeen: formatTimestamp(reading.timestamp),
             isOnline: isOnline,
             battery: 85 + Math.floor(Math.random() * 15),  // RANDOM BATTERY LEVELS TILL WE IMPLEMENT ACTUAL READINGS
             signal: isOnline ? 70 + Math.floor(Math.random() * 30) : 0 // RANDOM SIGNAL LEVELS TILL WE IMPLEMENT ACTUAL READINGS

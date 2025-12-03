@@ -5,6 +5,7 @@ import {
   Zap 
 } from 'lucide-react';
 import { Card, StatusBadge } from '../components/Shared';
+import { formatTimestamp } from '../utils/formatTime';
 
 export default function MainView({ readings, stats, loading, getStatus, isDeviceOnline }) {
   return (
@@ -100,7 +101,7 @@ export default function MainView({ readings, stats, loading, getStatus, isDevice
                         {isOnline ? `${reading.humidity}%` : '--'}
                       </td>
                       <td className="table-timestamp">
-                        {new Date(reading.timestamp).toLocaleString()}
+                        {formatTimestamp(reading.timestamp)}
                       </td>
                       <td><StatusBadge status={status} /></td>
                     </tr>
