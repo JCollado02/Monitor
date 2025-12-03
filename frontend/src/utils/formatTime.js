@@ -1,9 +1,9 @@
 export const formatTimestamp = (timestamp) => {
-  const date = new Date(timestamp);
+  const date = new Date(timestamp + 'Z'); // Force UTC interpretation
   
-  return date.toLocaleString(undefined, {  // 'undefined' uses browser's locale/timezone
+  return date.toLocaleString(undefined, {
     month: 'numeric',
-    day: 'numeric',
+    day: 'numeric', 
     year: 'numeric',
     hour: 'numeric',
     minute: '2-digit',
