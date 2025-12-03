@@ -35,7 +35,7 @@ export default function App() {
 
   useEffect(() => {
     const fetchData = () => {
-      axios.get('http://localhost:8080/api/sensor-data')
+      axios.get('https://monitor-0j0t.onrender.com/api/sensor-data')
         .then(response => {
           setReadings(response.data);
           setLoading(false);
