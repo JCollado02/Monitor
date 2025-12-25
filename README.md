@@ -15,7 +15,7 @@ A real-time sensor monitoring system built with ESP32 microcontrollers, DHT22 se
 - **Hardware**: ESP32, DHT22 sensors
 - **Backend**: Spring Boot, PostgreSQL
 - **Frontend**: React, JavaScript
-- **Deployment**: Render (backend), Neon (database), Netlify (frontend)
+- **Deployment**: Render (backend), Supabase (database), Netlify (frontend)
 
 ## How It Works
 
