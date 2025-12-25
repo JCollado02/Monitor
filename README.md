@@ -8,7 +8,7 @@ A real-time sensor monitoring system built with ESP32 microcontrollers, DHT22 se
 - **Power Optimization**: Implemented battery sensing and power management for extended deployment
 - **Smart Hub-Style Dashboard**: React-based web interface mimicking modern smart device hubs and SCADA systems
 - **Custom API**: RESTful backend built with Spring Boot and Java for sensor data management
-- **Cloud Architecture**: PostgreSQL database on Neon with separate frontend/backend deployment
+- **Cloud Architecture**: PostgreSQL database on Supabase with separate frontend/backend deployment
 
 ## Tech Stack
 
@@ -19,7 +19,7 @@ A real-time sensor monitoring system built with ESP32 microcontrollers, DHT22 se
 
 ## How It Works
 
-DHT22 sensors capture temperature and humidity data and transmit readings to an ESP32 microcontroller. The ESP32 sends data via POST requests to the Spring Boot backend, which stores readings in a PostgreSQL database hosted on Neon. The React frontend retrieves data through GET requests and visualizes real-time metrics on a web dashboard.
+DHT22 sensors capture temperature and humidity data and transmit readings to an ESP32 microcontroller. The ESP32 sends data via POST requests to the Spring Boot backend, which stores readings in a PostgreSQL database hosted on Supabase. The React frontend retrieves data through GET requests and visualizes real-time metrics on a web dashboard.
 
 ## Setup Instructions
 
