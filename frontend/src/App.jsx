@@ -28,7 +28,7 @@ export default function App() {
   // Check if device is online (reading within last 5 minutes, consider lower)
   const isDeviceOnline = (timestamp) => {
     const now = new Date();
-    const readingTime = new Date(timestamp + 'Z');
+    const readingTime = new Date(timestamp + 'Z'); //fixed timestamp
     const minutesSince = (now - readingTime) / (1000 * 60);
     return minutesSince < 5;
   };
